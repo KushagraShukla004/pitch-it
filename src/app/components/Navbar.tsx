@@ -14,27 +14,31 @@ export default async function Navbar() {
             <>
               <Link href="/startup/create">
                 <span>Create</span>
+              </Link>
+              <form
+                action={async () => {
+                  "use server";
 
-                <button onClick={signOut}>
-                  <span>Logout</span>
-                </button>
+                  await signOut({ redirectTo: "/" });
+                }}
+              >
+                <button type="submit">Logout</button>
+              </form>
 
-                <Link href={`/user/${session?.user.id}`}>
-                  <span>{session?.user?.name}</span>
-                </Link>
+              <Link href={`/user/${session?.user.id}`}>
+                <span>{session?.user?.name}</span>
               </Link>
             </>
           ) : (
-            //This will not work since we are using server action in a client component (onClick is a client component)
-            // <button
-            //   onClick={async () => {
-            //     //server action
-            //     "use server";
-            //     await signIn("github");
-            //   }}
-            // >
-            //   Login
-            // </button>
+            <form
+              action={async () => {
+                "use server";
+
+                await signIn("github");
+              }}
+            >
+              <button type="submit">Login</button>
+            </form>
           )}
         </div>
       </nav>
