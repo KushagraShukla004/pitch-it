@@ -1,15 +1,9 @@
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main className="font-sans text-white">
-      <Navbar />
-
-      {children}
-    </main>
-  );
+  return <main className="text-white">{children}</main>;
 }
