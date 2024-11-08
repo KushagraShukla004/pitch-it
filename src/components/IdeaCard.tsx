@@ -52,8 +52,10 @@ const IdeaCard = ({ post }: { post: IdeaTypeCard }) => {
 
       <div className="flex-between gap-3 mt-5 text-black">
         <Link href={`/?query=${category?.toLowerCase()}`}>
-          <p className="font-medium text-[16px]">{category}</p>
+          <p className="font-medium text-sm sm:text-base">{category}</p>
         </Link>
+
+        {/* asChild because we have Link within it */}
         <Button className="idea-card_btn" asChild>
           <Link href={`/idea/${_id}`}>Details</Link>
         </Button>

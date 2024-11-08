@@ -7,7 +7,7 @@ export default async function Navbar({ query }: { query?: string }) {
 
   return (
     <div className="flex justify-center w-full fixed top-4">
-      <header className="w-[60%] px-5 py-3 rounded-2xl bg-gray-500 bg-opacity-80 hover:boxShadow hover:bg-opacity-100 transition-all">
+      <header className="w-[90%] lg:w-[80%] 2xl:w-[60%] px-5 py-3 rounded-2xl bg-gray-500 bg-opacity-80 hover:boxShadow hover:bg-opacity-100 transition-all">
         <nav className="flex justify-between items-center">
           <Link href="/">
             <h1 className="text-2xl xl:text-4xl font-extrabold bg-gradient-to-r from-cyan-200 via-cyan-200 to-cyan-300 bg-clip-text text-transparent">
