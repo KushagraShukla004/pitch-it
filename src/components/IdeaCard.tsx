@@ -4,40 +4,41 @@ import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { urlFor } from "@/sanity/lib/image";
+import { Author, Idea } from "@/sanity/types";
 
-const IdeaCard = ({ post }: { post: IdeaTypeCard }) => {
-  const {
-    _id,
-    _createdAt,
-    views,
-    author: { _id: authorId, name, image: authorImage },
-    title,
-    description,
-    image,
-    category,
-  } = post;
+export type IdeaCardType = Omit<Idea, "author"> & { author?: Author };
+
+const IdeaCard = ({ post }: { post: IdeaCardType }) => {
+  const { _id, _createdAt, views, author, title, description, image, category } = post;
+
+  // Generate the URL for the idea image
+  const ideaImageUrl = image ? urlFor(image).width(800).url() : null;
+
   return (
     <ul className="idea-card group">
       <div className="flex justify-between items-center">
         <p className="text-black">{formatDate(_createdAt)}</p>
         <div className="flex gap-1.5">
-          <EyeIcon className="size-6 text-cyan-600"></EyeIcon>
+          <EyeIcon className="size-6 text-cyan-600" />
           <span className="text-black">{views}</span>
         </div>
       </div>
       <div className="flex-between mt-5 gap-5 text-black">
         <div className="flex-1 ">
-          <Link href={`/user/${authorId}`}>
-            <p className="text-xl font-semibold line-clamp-1 tracking-tight">{name}</p>
+          <Link href={`/user/${author?._id}`}>
+            <p className="text-xl font-semibold line-clamp-1 tracking-tight">
+              {author?.name}
+            </p>
           </Link>
           <Link href={`/idea/${_id}`}>
             <h3 className="line-clamp-1 tracking-tighter">{title}</h3>
           </Link>
         </div>
-        <Link href={`/user/${authorId}`}>
+        <Link href={`/user/${author?._id}`}>
           <Image
-            src={authorImage || "https://placehold.co/48x48"}
-            alt={name}
+            src={author?.image || "https://placehold.co/48x48"}
+            alt="Profile Image"
             width={48}
             height={48}
             className="rounded-full size-[48px] object-cover"
@@ -47,7 +48,8 @@ const IdeaCard = ({ post }: { post: IdeaTypeCard }) => {
       <Link href={`/idea/${_id}`}>
         <p className="idea-card_desc">{description}</p>
 
-        <img src={image} alt="placeholder" className="idea-card_img" />
+        {/* Display the idea image using the generated URL */}
+        {ideaImageUrl && <img src={ideaImageUrl} alt={title} className="idea-card_img" />}
       </Link>
 
       <div className="flex-between gap-3 mt-5 text-black">

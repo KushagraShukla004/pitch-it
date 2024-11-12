@@ -1,6 +1,7 @@
-import IdeaCard from "@/components/IdeaCard";
+import IdeaCard, { IdeaCardType } from "@/components/IdeaCard";
 import Navbar from "../../components/Navbar";
-import posts from "@/lib/postsData";
+import { client } from "@/sanity/lib/client";
+import { IDEAS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -8,6 +9,8 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
+
+  const posts = await client.fetch(IDEAS_QUERY);
 
   return (
     <div className="background">
@@ -19,9 +22,7 @@ export default async function Home({
         <div className="section_container">
           <div className="mt-7 card_grid">
             {posts?.length > 0 ? (
-              posts.map((post: IdeaCardType, index: number) => (
-                <IdeaCard key={post?._id} post={post} />
-              ))
+              posts.map((post: IdeaCardType) => <IdeaCard key={post?._id} post={post} />)
             ) : (
               <p className="no-results">No Ideas Found</p>
             )}
