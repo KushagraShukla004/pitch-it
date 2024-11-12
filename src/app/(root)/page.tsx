@@ -9,13 +9,14 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
+  const params = { search: query || null };
 
   //client fetching not for ISR
   // const posts = await client.fetch(IDEAS_QUERY);
 
   //new fetch for ISR using "server-only"
   //it revalidates the page whenever new changes are made
-  const { data: posts } = await sanityFetch({ query: IDEAS_QUERY });
+  const { data: posts } = await sanityFetch({ query: IDEAS_QUERY, params });
 
   return (
     <>

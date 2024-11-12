@@ -1,7 +1,8 @@
 import { defineQuery } from "next-sanity";
 
+//"!" this means "if" here
 export const IDEAS_QUERY =
-  defineQuery(`*[_type == "idea" && defined(slug.current)] | order(_createdAt desc){
+  defineQuery(`*[_type == "idea" && defined(slug.current) && !defined($search) || category match $search || title match $search || author->name match $search ] | order(_createdAt desc){
   _id,
   title,
   slug,
