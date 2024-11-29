@@ -2,7 +2,13 @@ import Link from "next/link";
 import { auth, signOut, signIn } from "../app/auth";
 import SearchForm from "./SearchForm";
 
-export default async function Navbar({ query }: { query?: string }) {
+export default async function Navbar({
+  query,
+  search,
+}: {
+  query?: string;
+  search?: boolean;
+}) {
   const session = await auth();
 
   return (
@@ -15,7 +21,7 @@ export default async function Navbar({ query }: { query?: string }) {
             </h1>
           </Link>
 
-          <SearchForm query={query} />
+          {search == true && <SearchForm query={query} />}
 
           <div className="flex items-center gap-5 text-white">
             {session && session?.user ? (
