@@ -199,8 +199,38 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: IDEAS_QUERY
-// Query: *[_type == "idea" && defined(slug.current)] | order(_createdAt desc){  _id,  title,  slug,  _createdAt,  author ->{    _id,name,image,bio  },  views,  description,  category,  image}
+// Query: *[_type == "idea" && defined(slug.current) && !defined($search) || category match $search || title match $search || author->name match $search ] | order(_createdAt desc){  _id,  title,  slug,  _createdAt,  author ->{    _id,name,image,bio  },  views,  description,  category,  image}
 export type IDEAS_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  _createdAt: string;
+  author: null;
+  views: null;
+  description: null;
+  category: null;
+  image: null;
+} | {
+  _id: string;
+  title: null;
+  slug: null;
+  _createdAt: string;
+  author: null;
+  views: null;
+  description: null;
+  category: null;
+  image: string | null;
+} | {
+  _id: string;
+  title: string | null;
+  slug: null;
+  _createdAt: string;
+  author: null;
+  views: null;
+  description: string | null;
+  category: null;
+  image: null;
+} | {
   _id: string;
   title: string | null;
   slug: Slug | null;
@@ -226,11 +256,42 @@ export type IDEAS_QUERYResult = Array<{
     _type: "image";
   } | null;
 }>;
+// Variable: IDEAS_BY_ID_QUERY
+// Query: *[_type == "idea" && _id== $id][0]{  _id,    title,    slug,    _createdAt,    author ->{      _id,name,username,image,bio    },    views,    description,    category,    image,    pitch,}
+export type IDEAS_BY_ID_QUERYResult = {
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  _createdAt: string;
+  author: {
+    _id: string;
+    name: string | null;
+    username: string | null;
+    image: string | null;
+    bio: string | null;
+  } | null;
+  views: number | null;
+  description: string | null;
+  category: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  pitch: string | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"idea\" && defined(slug.current)] | order(_createdAt desc){\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author ->{\n    _id,name,image,bio\n  },\n  views,\n  description,\n  category,\n  image\n}": IDEAS_QUERYResult;
+    "*[_type == \"idea\" && defined(slug.current) && !defined($search) || category match $search || title match $search || author->name match $search ] | order(_createdAt desc){\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author ->{\n    _id,name,image,bio\n  },\n  views,\n  description,\n  category,\n  image\n}": IDEAS_QUERYResult;
+    "*[_type == \"idea\" && _id== $id][0]{\n  _id,\n    title,\n    slug,\n    _createdAt,\n    author ->{\n      _id,name,username,image,bio\n    },\n    views,\n    description,\n    category,\n    image,\n    pitch,\n}": IDEAS_BY_ID_QUERYResult;
   }
 }

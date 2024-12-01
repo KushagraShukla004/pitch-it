@@ -103,7 +103,7 @@
     @apply flex justify-between items-center;
   }
 
-  /* .text-30-extrabold {
+  .text-30-extrabold {
     @apply text-[30px] font-extrabold text-white;
   }
 
@@ -133,18 +133,18 @@
 
   .text-14-normal {
     @apply font-normal text-sm text-white-100/80;
-  } */
+  }
 
   .pink_container {
     @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
   }
 
   .tag {
-    @apply bg-secondary px-6 py-3 font-work-sans font-bold rounded-sm uppercase relative tag-tri;
+    @apply bg-secondary px-6 py-3 font-sans font-bold rounded-sm uppercase relative tag-tri;
   }
 
   .heading {
-    @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
+    @apply uppercase bg-black px-6 py-3 font-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
   }
 
   .sub-heading {
@@ -152,7 +152,7 @@
   }
 
   .no-result {
-    @apply text-black-100 text-sm font-normal;
+    @apply text-[#333333] text-sm font-normal;
   }
 
   /* profile */
@@ -191,7 +191,7 @@
   }
 
   .login {
-    @apply border-[5px] py-4 border-black bg-white text-black relative shadow-100 font-work-sans font-medium hover:shadow-none transition-all duration-500 !important;
+    @apply border-[5px] py-4 border-black bg-white text-black relative shadow-100 font-sans font-medium hover:shadow-none transition-all duration-500 !important;
   }
 
   /* view */
@@ -204,7 +204,7 @@
   }
 
   .category-tag {
-    @apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full;
+    @apply font-medium text-[16px] bg-cyan-600 px-4 py-2 rounded-full;
   }
 
   .pattern {

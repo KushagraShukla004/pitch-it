@@ -12,7 +12,7 @@ export default async function Navbar({
   const session = await auth();
 
   return (
-    <div className="flex justify-center w-full fixed top-4">
+    <div className={`${search ? "fixed" : "relative"} flex justify-center w-full top-4`}>
       <header className="w-[90%] lg:w-[80%] 2xl:w-[60%] px-5 py-3 rounded-2xl bg-gray-500 bg-opacity-80 hover:boxShadow hover:bg-opacity-100 transition-all">
         <nav className="flex justify-between items-center">
           <Link href="/">
