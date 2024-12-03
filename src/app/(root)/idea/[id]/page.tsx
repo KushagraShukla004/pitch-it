@@ -9,8 +9,9 @@ import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 import markdownit from "markdown-it";
 import { Skeleton } from "@/components/ui/skeleton";
+import View from "@/components/View";
 
-// export const experimental_ppr = true;
+export const experimental_ppr = true;
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const md = markdownit();
@@ -72,10 +73,12 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
               )}
             </div>
           </div>
-          <hr className="divider" />
+          {/* <hr className="divider" /> */}
 
           {/* TODO: Editor Selected Recommendation */}
-          <Suspense fallback={<Skeleton className="view_skeleton" />}></Suspense>
+          <Suspense fallback={<Skeleton className="view_skeleton" />}>
+            <View id={id} />
+          </Suspense>
         </section>
       </div>
     </>
