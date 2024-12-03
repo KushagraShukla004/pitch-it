@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { auth, signOut, signIn } from "../app/auth";
+import { auth, signOut, signIn } from "../../auth";
 import SearchForm from "./SearchForm";
 
 export default async function Navbar({
@@ -26,7 +26,7 @@ export default async function Navbar({
           <div className="flex items-center gap-5 text-white">
             {session && session?.user ? (
               <>
-                <Link href="/startup/create">
+                <Link href="/idea/create">
                   <span className="hover:text-cyan-200">Create</span>
                 </Link>
                 <Link href={`/user/${session?.user.id}`}>
