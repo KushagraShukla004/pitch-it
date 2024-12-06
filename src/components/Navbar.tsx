@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { auth, signOut, signIn } from "../../auth";
+import { auth, signOut, signIn } from "@/auth";
 import SearchForm from "./SearchForm";
 
 export default async function Navbar({

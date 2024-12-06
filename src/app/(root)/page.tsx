@@ -2,7 +2,7 @@ import IdeaCard, { IdeaCardType } from "@/components/IdeaCard";
 import Navbar from "../../components/Navbar";
 import { IDEAS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { auth } from "../../../auth";
+import { auth } from "@/auth";
 
 export default async function Home({
   searchParams,
