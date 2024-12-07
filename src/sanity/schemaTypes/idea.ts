@@ -9,7 +9,6 @@ export const idea = defineType({
       name: "title",
       type: "string",
     }),
-    //automatically generate url slug according to the title
     defineField({
       name: "slug",
       type: "slug",
@@ -25,6 +24,7 @@ export const idea = defineType({
     defineField({
       name: "views",
       type: "number",
+      initialValue: 0,
     }),
     defineField({
       name: "description",
@@ -36,9 +36,11 @@ export const idea = defineType({
       validation: (Rule) =>
         Rule.min(1).max(30).required().error("Please enter a category"),
     }),
+    // 'image' type for the image uploader
+    // 'url' type for the image link
     defineField({
       name: "image",
-      type: "image",
+      type: "url",
       validation: (Rule) => Rule.required(),
     }),
     defineField({

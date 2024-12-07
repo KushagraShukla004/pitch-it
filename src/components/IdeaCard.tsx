@@ -41,7 +41,7 @@ const IdeaCard = ({ post }: { post: IdeaCardType }) => {
             alt="Profile Image"
             width={48}
             height={48}
-            className="rounded-full size-[48px] object-cover"
+            className="rounded-full  object-cover"
           />
         </Link>
       </div>

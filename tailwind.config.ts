@@ -8,6 +8,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@shadcn/ui/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -16,32 +17,14 @@ const config: Config = {
         md: "900px",
       },
       colors: {
-        background: {
-          DEFAULT: "#F2F4F5", // Light mode primary background
-          dark: "#121212", // Dark mode primary background
-          card: "#FFFFFF", // Light mode card background
-          cardDark: "#2D2D2D", // Dark mode card background
-        },
-        primary: "#0E7C7B", // Teal for highlights/buttons
-        secondary: "#3A3D98", // Deep blue for accents
-        accent: {
-          yellow: "#FFCB47", // Soft golden yellow for accent elements
-        },
-        error: "#E63946", // Red for error messages
-        text: {
-          primary: "#1B1F23", // Dark gray for main text
-          light: "#E0E0E0", // Light gray for dark mode text
-          heading: "#FFFFFF", // White for headings in dark mode
-          muted: "#A0A0A0", // Muted gray for less important text
+        destructive: {
+          DEFAULT: "#E63946", // Your error red color
+          hover: "#D62839", // Darker red for hover states
+          text: "#FFFFFF", // White text on destructive background
         },
       },
       fontFamily: {
         sans: ["Space Mono", "sans-serif"],
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
         100: "2px 2px 0px 0px rgb(0, 0, 0)",
@@ -55,20 +38,4 @@ const config: Config = {
 
 export default config;
 
-// colors: {
-//   primary: {
-//     "100": "#FFE8F0",
-//     DEFAULT: "#EE2B69",
-//   },
-//   secondary: "#FBE843",
-//   black: {
-//     "100": "#333333",
-//     "200": "#141413",
-//     "300": "#7D8087",
-//     DEFAULT: "#000000",
-//   },
-//   white: {
-//     "100": "#F7F7F7",
-//     DEFAULT: "#FFFFFF",
-//   },
-// },
+// #3A3D98

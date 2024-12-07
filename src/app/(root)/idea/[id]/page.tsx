@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import { formatDate } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
 import { IDEAS_BY_ID_QUERY } from "@/sanity/lib/queries";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,7 +35,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <p className="text-mg text-center mt-2">{post.description}</p>
           <section className="text-center flex justify-center h-auto mt-4">
             <Image
-              src={urlFor(post.image).url()}
+              src={post.image}
               alt="Idea Image"
               width={700}
               height={700}
@@ -48,15 +47,15 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="flex-between gap-5">
               <Link href={`/user/${post.author?._id}`} className="flex gap-5">
                 <Image
-                  src={post.author.image}
+                  src={post.author?.image}
                   alt="Avatar"
                   width={48}
                   height={48}
                   className="rounded-full drop-shadow-lg"
                 />
                 <div>
-                  <p className="text-20-medium">{post.author.name}</p>
-                  <p className="text-16-medium">@{post.author.username}</p>
+                  <p className="text-20-medium">{post.author?.name}</p>
+                  <p className="text-16-medium">@{post.author?.username}</p>
                 </div>
               </Link>
               <p className="category-tag">{post.category}</p>

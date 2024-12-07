@@ -39,6 +39,22 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
 export type SanityFileAsset = {
   _id: string;
   _type: "sanity.fileAsset";
@@ -61,11 +77,52 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
+export type SanityImageAsset = {
+  _id: string;
+  _type: "sanity.imageAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  metadata?: SanityImageMetadata;
+  source?: SanityAssetSourceData;
+};
+
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
+};
+
 export type Geopoint = {
   _type: "geopoint";
   lat?: number;
   lng?: number;
   alt?: number;
+};
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type Playlist = {
@@ -102,75 +159,8 @@ export type Idea = {
   views?: number;
   description?: string;
   category?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
+  image?: string;
   pitch?: string;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageAsset = {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
-};
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
 };
 
 export type Slug = {
@@ -195,7 +185,7 @@ export type Author = {
 
 export type Markdown = string;
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Playlist | Idea | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug | Author | Markdown;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Playlist | Idea | Slug | Author | Markdown;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: IDEAS_QUERY
@@ -244,17 +234,7 @@ export type IDEAS_QUERYResult = Array<{
   views: number | null;
   description: string | null;
   category: string | null;
-  image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  } | null;
+  image: string | null;
 }>;
 // Variable: IDEAS_BY_ID_QUERY
 // Query: *[_type == "idea" && _id== $id][0]{  _id,    title,    slug,    _createdAt,    author ->{      _id,name,username,image,bio    },    views,    description,    category,    image,    pitch,}
@@ -273,21 +253,11 @@ export type IDEAS_BY_ID_QUERYResult = {
   views: number | null;
   description: string | null;
   category: string | null;
-  image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  } | null;
+  image: string | null;
   pitch: string | null;
 } | null;
 // Variable: IDEA_VIEWS_QUERY
-// Query: *[_type == "idea" && _id == $id][0]{      _id, views  }
+// Query: *[_type == "idea" && _id == $id][0]{      _id,       views  }
 export type IDEA_VIEWS_QUERYResult = {
   _id: string;
   views: number | null;
@@ -321,7 +291,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"idea\" && defined(slug.current) && !defined($search) || category match $search || title match $search || author->name match $search ] | order(_createdAt desc){\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author ->{\n    _id,name,image,bio\n  },\n  views,\n  description,\n  category,\n  image\n}": IDEAS_QUERYResult;
     "*[_type == \"idea\" && _id== $id][0]{\n  _id,\n    title,\n    slug,\n    _createdAt,\n    author ->{\n      _id,name,username,image,bio\n    },\n    views,\n    description,\n    category,\n    image,\n    pitch,\n}": IDEAS_BY_ID_QUERYResult;
-    "\n  *[_type == \"idea\" && _id == $id][0]{\n      _id, views\n  }\n": IDEA_VIEWS_QUERYResult;
+    "\n  *[_type == \"idea\" && _id == $id][0]{\n      _id, \n      views\n  }\n": IDEA_VIEWS_QUERYResult;
     "\n  *[_type == \"author\" && id == $id][0]{\n      _id,\n      id,\n      name,\n      username,\n      email,\n      image,\n      bio\n  }\n  ": AUTHOR_BY_GITHUB_ID_QUERYResult;
     "\n  *[_type == \"author\" && _id == $id][0]{\n      _id,\n      id,\n      name,\n      username,\n      email,\n      image,\n      bio\n  }\n  ": AUTHOR_BY_ID_QUERYResult;
   }

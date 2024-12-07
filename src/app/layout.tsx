@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "easymde/dist/easymde.min.css";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Pitch-It !",
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
