@@ -4,16 +4,16 @@ import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { urlFor } from "@/sanity/lib/image";
 import { Author, Idea } from "@/sanity/types";
+// import { urlFor } from "@/sanity/lib/image";
 
 export type IdeaCardType = Omit<Idea, "author"> & { author?: Author };
 
 const IdeaCard = ({ post }: { post: IdeaCardType }) => {
   const { _id, _createdAt, views, author, title, description, image, category } = post;
 
-  // Generate the URL for the idea image
-  const ideaImageUrl = image ? urlFor(image).width(800).url() : null;
+  // Generate the URL for the idea image (used when Image Uploading coz it is a "File" object)
+  // const ideaImageUrl = image ? urlFor(image).width(800).url() : null;
 
   return (
     <ul className="idea-card group">
@@ -38,10 +38,11 @@ const IdeaCard = ({ post }: { post: IdeaCardType }) => {
         <Link href={`/user/${author?._id}`}>
           <Image
             src={author?.image || "https://placehold.co/48x48"}
-            alt="Profile Image"
+            alt={author?.name || "Profile Image"}
             width={48}
             height={48}
-            className="rounded-full  object-cover"
+            className="rounded-full object-cover"
+            priority
           />
         </Link>
       </div>
@@ -49,7 +50,7 @@ const IdeaCard = ({ post }: { post: IdeaCardType }) => {
         <p className="idea-card_desc">{description}</p>
 
         {/* Display the idea image using the generated URL */}
-        {ideaImageUrl && <img src={ideaImageUrl} alt={title} className="idea-card_img" />}
+        {image && <img src={image} alt={title} className="idea-card_img" />}
       </Link>
 
       <div className="flex-between gap-3 mt-5 text-black">

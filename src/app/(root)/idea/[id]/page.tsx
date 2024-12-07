@@ -35,7 +35,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <p className="text-mg text-center mt-2">{post.description}</p>
           <section className="text-center flex justify-center h-auto mt-4">
             <Image
-              src={post.image}
+              src={post.image || "https://placehold.co/800x600?text=Image+Not+Found"}
               alt="Idea Image"
               width={700}
               height={700}
@@ -47,7 +47,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="flex-between gap-5">
               <Link href={`/user/${post.author?._id}`} className="flex gap-5">
                 <Image
-                  src={post.author?.image}
+                  src={post.author?.image || "https://placehold.co/48x48"}
                   alt="Avatar"
                   width={48}
                   height={48}

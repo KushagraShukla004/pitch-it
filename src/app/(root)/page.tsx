@@ -2,7 +2,6 @@ import IdeaCard, { IdeaCardType } from "@/components/IdeaCard";
 import Navbar from "../../components/Navbar";
 import { IDEAS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { auth } from "@/auth";
 
 export default async function Home({
   searchParams,
@@ -12,9 +11,6 @@ export default async function Home({
   const query = (await searchParams).query;
   const params = { search: query || null };
 
-  const session = await auth();
-
-  // console.log(session?.id);
   //client fetching not for ISR
   // const posts = await client.fetch(IDEAS_QUERY);
 
