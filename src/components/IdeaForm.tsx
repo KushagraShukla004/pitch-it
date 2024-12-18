@@ -5,13 +5,16 @@ import { useActionState, useState } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "@/components/ui/button";
-import MDEditor from "@uiw/react-md-editor";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { createPitch } from "@/lib/actions";
+// import MDEditor from "@uiw/react-md-editor";
+import dynamic from "next/dynamic";
+
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 const IdeaForm = () => {
   //<Record<string,string>> is the type of object this useState containes i.e string
@@ -163,8 +166,8 @@ const IdeaForm = () => {
       </div>
 
       <Button type="submit" className="idea-form_btn text-white" disabled={isPending}>
-        {isPending ? "Submitting..." : "Submit Your Idea"}
-        <Send className="size-6 ml-2" />
+        {isPending ? "Submitting..." : "Submit"}
+        <Send className="size-6" />
       </Button>
     </form>
   );

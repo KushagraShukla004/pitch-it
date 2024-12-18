@@ -11,7 +11,7 @@ export const formSchema = z.object({
     .max(500, "Description cannot exceed 500 characters"),
   category: z
     .string()
-    .min(3, "Category must be at least 3 characters")
+    .min(1, "Category must be at least 1 characters")
     .max(20, "Category cannot exceed 20 characters"),
 
   // TODO: Image uploader instead of image link
