@@ -39,7 +39,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
               alt="Idea Image"
               width={700}
               height={700}
-              className="rounded-xl"
+              className="rounded-xl object-contain"
               priority
             />
           </section>
@@ -51,7 +51,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                   alt="Avatar"
                   width={48}
                   height={48}
-                  className="rounded-full drop-shadow-lg"
+                  className="aspect-auto rounded-full drop-shadow-lg"
                 />
                 <div>
                   <p className="text-20-medium">{post.author?.name}</p>

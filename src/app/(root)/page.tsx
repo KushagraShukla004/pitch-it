@@ -23,7 +23,7 @@ export default async function Home({
       <div>
         <Navbar query={query} search={true} />
         <main className="main_section ">
-          <p className="text-2xl text-center mt-8 font-medium text-white">
+          <p className="text-2xl text-center mt-20 sm:mt-8 font-medium text-white">
             {query ? `Search Results for "${query}"` : "Ideas to explore!"}
           </p>
           <div className="section_container">

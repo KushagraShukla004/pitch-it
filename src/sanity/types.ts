@@ -188,39 +188,31 @@ export type Markdown = string;
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Playlist | Idea | Slug | Author | Markdown;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
-// Variable: IDEAS_QUERY
-// Query: *[_type == "idea" && defined(slug.current) && !defined($search) || category match $search || title match $search || author->name match $search ] | order(_createdAt desc){  _id,  title,  slug,  _createdAt,  author ->{    _id,name,image,bio  },  views,  description,  category,  image}
-export type IDEAS_QUERYResult = Array<{
+// Variable: AUTHOR_BY_GITHUB_ID_QUERY
+// Query: *[_type == "author" && id == $id][0]{      _id,      id,      name,      username,      email,      image,      bio  }
+export type AUTHOR_BY_GITHUB_ID_QUERYResult = {
   _id: string;
-  title: string | null;
-  slug: Slug | null;
-  _createdAt: string;
-  author: null;
-  views: null;
-  description: null;
-  category: null;
-  image: null;
-} | {
-  _id: string;
-  title: null;
-  slug: null;
-  _createdAt: string;
-  author: null;
-  views: null;
-  description: null;
-  category: null;
+  id: number | null;
+  name: string | null;
+  username: string | null;
+  email: string | null;
   image: string | null;
-} | {
+  bio: string | null;
+} | null;
+// Variable: AUTHOR_BY_ID_QUERY
+// Query: *[_type == "author" && _id == $id][0]{      _id,      id,      name,      username,      email,      image,      bio  }
+export type AUTHOR_BY_ID_QUERYResult = {
   _id: string;
-  title: string | null;
-  slug: null;
-  _createdAt: string;
-  author: null;
-  views: null;
-  description: string | null;
-  category: null;
-  image: null;
-} | {
+  id: number | null;
+  name: string | null;
+  username: string | null;
+  email: string | null;
+  image: string | null;
+  bio: string | null;
+} | null;
+// Variable: IDEAS_QUERY
+// Query: *[_type == "idea" && (    !defined($search) ||     category match $search ||     title match $search ||     author->name match $search  )] | order(_createdAt desc) {    _id,    title,    slug,    _createdAt,    author -> {      _id,      name,      image,      bio    },    views,    description,    category,    image  }
+export type IDEAS_QUERYResult = Array<{
   _id: string;
   title: string | null;
   slug: Slug | null;
@@ -256,43 +248,40 @@ export type IDEAS_BY_ID_QUERYResult = {
   image: string | null;
   pitch: string | null;
 } | null;
+// Variable: IDEAS_BY_AUTHOR_QUERY
+// Query: *[_type == "idea" && author._ref == $id] | order(_createdAt desc) {    _id,    title,    slug,    _createdAt,    author -> {      _id,      name,      image,      bio    },    views,    description,    category,    image  }
+export type IDEAS_BY_AUTHOR_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  _createdAt: string;
+  author: {
+    _id: string;
+    name: string | null;
+    image: string | null;
+    bio: string | null;
+  } | null;
+  views: number | null;
+  description: string | null;
+  category: string | null;
+  image: string | null;
+}>;
 // Variable: IDEA_VIEWS_QUERY
 // Query: *[_type == "idea" && _id == $id][0]{      _id,       views  }
 export type IDEA_VIEWS_QUERYResult = {
   _id: string;
   views: number | null;
 } | null;
-// Variable: AUTHOR_BY_GITHUB_ID_QUERY
-// Query: *[_type == "author" && id == $id][0]{      _id,      id,      name,      username,      email,      image,      bio  }
-export type AUTHOR_BY_GITHUB_ID_QUERYResult = {
-  _id: string;
-  id: number | null;
-  name: string | null;
-  username: string | null;
-  email: string | null;
-  image: string | null;
-  bio: string | null;
-} | null;
-// Variable: AUTHOR_BY_ID_QUERY
-// Query: *[_type == "author" && _id == $id][0]{      _id,      id,      name,      username,      email,      image,      bio  }
-export type AUTHOR_BY_ID_QUERYResult = {
-  _id: string;
-  id: number | null;
-  name: string | null;
-  username: string | null;
-  email: string | null;
-  image: string | null;
-  bio: string | null;
-} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"idea\" && defined(slug.current) && !defined($search) || category match $search || title match $search || author->name match $search ] | order(_createdAt desc){\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author ->{\n    _id,name,image,bio\n  },\n  views,\n  description,\n  category,\n  image\n}": IDEAS_QUERYResult;
-    "*[_type == \"idea\" && _id== $id][0]{\n  _id,\n    title,\n    slug,\n    _createdAt,\n    author ->{\n      _id,name,username,image,bio\n    },\n    views,\n    description,\n    category,\n    image,\n    pitch,\n}": IDEAS_BY_ID_QUERYResult;
-    "\n  *[_type == \"idea\" && _id == $id][0]{\n      _id, \n      views\n  }\n": IDEA_VIEWS_QUERYResult;
     "\n  *[_type == \"author\" && id == $id][0]{\n      _id,\n      id,\n      name,\n      username,\n      email,\n      image,\n      bio\n  }\n  ": AUTHOR_BY_GITHUB_ID_QUERYResult;
     "\n  *[_type == \"author\" && _id == $id][0]{\n      _id,\n      id,\n      name,\n      username,\n      email,\n      image,\n      bio\n  }\n  ": AUTHOR_BY_ID_QUERYResult;
+    "\n  *[_type == \"idea\" && (\n    !defined($search) || \n    category match $search || \n    title match $search || \n    author->name match $search\n  )] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    _createdAt,\n    author -> {\n      _id,\n      name,\n      image,\n      bio\n    },\n    views,\n    description,\n    category,\n    image\n  }\n": IDEAS_QUERYResult;
+    "*[_type == \"idea\" && _id== $id][0]{\n  _id,\n    title,\n    slug,\n    _createdAt,\n    author ->{\n      _id,name,username,image,bio\n    },\n    views,\n    description,\n    category,\n    image,\n    pitch,\n}": IDEAS_BY_ID_QUERYResult;
+    "\n  *[_type == \"idea\" && author._ref == $id] | order(_createdAt desc) {\n    _id,\n    title,\n    slug,\n    _createdAt,\n    author -> {\n      _id,\n      name,\n      image,\n      bio\n    },\n    views,\n    description,\n    category,\n    image\n  }\n": IDEAS_BY_AUTHOR_QUERYResult;
+    "\n  *[_type == \"idea\" && _id == $id][0]{\n      _id, \n      views\n  }\n": IDEA_VIEWS_QUERYResult;
   }
 }

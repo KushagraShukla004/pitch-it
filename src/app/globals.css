@@ -22,19 +22,16 @@
     @apply bg-gray-500 bg-opacity-50 w-[85%] min-h-[45rem] mt-5 border-slate-700 rounded-2xl p-5 overflow-y-auto 
     shadow-2xl shadow-black;
   }
-  /* .section_cards {
-    @apply bg-gray-500 size-max border-slate-700 rounded-2xl p-10;
-  } */
   .card_grid {
     @apply grid 2xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5;
   }
   .card_grid-sm {
-    @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+    @apply grid md:grid-cols-2 sm:grid-cols-2 gap-5;
   }
   /* main section end */
 
   /* ideacard */
-  .idea-card {
+  /* .idea-card {
     @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-sky-500 transition-all duration-500 hover:shadow-300 hover:bg-neutral-200;
   }
 
@@ -52,12 +49,36 @@
 
   .idea-card_skeleton {
     @apply w-full h-96 rounded-[22px] bg-zinc-400;
+  } */
+  .idea-card {
+    @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-sky-500 transition-all duration-500 hover:shadow-300 hover:bg-neutral-200;
+    @apply sm:py-4 sm:px-4 lg:py-6 lg:px-5; /* Adjust padding for smaller screens */
+  }
+
+  .idea-card_desc {
+    @apply font-normal text-sm line-clamp-2 my-3 text-zinc-800 break-all;
+    @apply sm:text-xs lg:text-sm; /* Adjust font size for smaller screens */
+  }
+
+  .idea-card_img {
+    @apply w-full h-[164px] rounded-[10px] object-cover;
+    @apply sm:h-[120px] md:h-[150px] lg:h-[164px]; /* Adjust image height */
+  }
+
+  .idea-card_btn {
+    @apply rounded-full bg-zinc-900 text-sm text-white px-4 py-2;
+    @apply md:px-3 md:py-1.5 md:text-xs lg:text-sm lg:px-4 lg:py-2; /* Adjust padding and font size */
+  }
+
+  .idea-card_skeleton {
+    @apply w-full h-96 rounded-[22px] bg-zinc-400;
+    @apply sm:h-64 md:h-80 lg:h-96; /* Adjust skeleton height */
   }
   /* idea card end */
 
   /* searchform */
   .search-form {
-    @apply max-w-[35%] w-full bg-white hover:border-[2px] border-slate-700 rounded-[80px] text-[20px] px-5 flex flex-row items-center gap-5 text-black;
+    @apply max-w-[75%] w-full bg-white hover:border-[2px] border-slate-700 rounded-[80px] text-[20px] px-5 flex flex-row items-center gap-5 text-black;
   }
 
   .search-input {
@@ -69,12 +90,9 @@
   }
 
   /* ideaform */
-  .idea-form {
+  /* .idea-form {
     @apply max-w-2xl mx-auto my-10 space-y-8 px-6;
   }
-  /* .idea-form {
-    @apply bg-white border-[5px] border-black my-5 px-5 rounded-[22px] shadow-200 max-w-2xl mx-auto hover:border-sky-500 transition-all duration-500 hover:shadow-300 hover:bg-neutral-200;
-  } */
 
   .idea-form_label {
     @apply font-bold text-[18px] text-black uppercase;
@@ -98,7 +116,40 @@
 
   .idea-form_btn {
     @apply bg-cyan-500 border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] !important;
+  } */
+  /* idea form end */
+
+  /* ideaform */
+  .idea-form {
+    @apply max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto my-10 space-y-8 px-4 sm:px-6 md:px-8;
   }
+
+  .idea-form_label {
+    @apply font-bold text-sm sm:text-base md:text-lg lg:text-xl text-black uppercase;
+  }
+
+  .idea-form_input {
+    @apply w-full border-[2px] sm:border-[3px] border-black p-3 sm:p-5 text-sm sm:text-base md:text-lg text-black font-semibold rounded-full mt-2 sm:mt-3 placeholder:text-slate-500 !important;
+  }
+
+  .idea-form_textarea {
+    @apply w-full border-[2px] sm:border-[3px] border-black p-3 sm:p-5 text-sm sm:text-base md:text-lg text-black font-semibold rounded-lg sm:rounded-[20px] mt-2 sm:mt-3 placeholder:text-slate-500 !important;
+  }
+
+  .idea-form_error {
+    @apply text-red-500 text-xs sm:text-sm mt-1 sm:mt-2 ml-2 sm:ml-5;
+  }
+
+  .idea-form_editor {
+    @apply mt-2 sm:mt-3 border-[2px] sm:border-[3px] border-black text-sm sm:text-base md:text-lg text-black font-semibold placeholder:text-slate-500 !important;
+  }
+
+  .idea-form_btn {
+    @apply bg-cyan-500 border-[3px] sm:border-[4px] border-black rounded-full p-3 sm:p-5 w-full min-h-[50px] sm:min-h-[70px] font-bold text-xs sm:text-base md:text-lg !important;
+  }
+
+  /* idea form end */
+
   .flex-center {
     @apply flex justify-center items-center;
   }
@@ -106,24 +157,8 @@
     @apply flex justify-between items-center;
   }
 
-  .text-30-extrabold {
-    @apply text-[30px] font-extrabold text-white;
-  }
-
-  .text-30-bold {
-    @apply text-[30px] font-bold text-white;
-  }
-
-  .text-30-semibold {
-    @apply font-semibold text-[30px] text-white;
-  }
-
-  .text-26-semibold {
-    @apply font-semibold text-[26px] text-white;
-  }
-
   .text-24-black {
-    @apply text-[24px] font-black text-white;
+    @apply text-[24px] font-black text-black;
   }
 
   .text-20-medium {
@@ -132,14 +167,6 @@
 
   .text-16-medium {
     @apply font-medium text-[16px] text-white;
-  }
-
-  .text-14-normal {
-    @apply font-normal text-sm text-white-100/80;
-  }
-
-  .pink_container {
-    @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
   }
 
   .tag {
@@ -160,11 +187,11 @@
 
   /* profile */
   .profile_container {
-    @apply w-full pb-10 pt-20 px-6 max-w-7xl mx-auto lg:flex-row flex-col flex gap-10;
+    @apply w-full py-10 mx-auto lg:flex-row flex-col flex gap-10;
   }
 
   .profile_card {
-    @apply w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-primary border-[5px] border-black shadow-100 rounded-[30px] relative z-0 h-fit max-lg:w-full;
+    @apply w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-cyan-500 border-[5px] border-black shadow-100 rounded-[30px] relative z-0 h-fit max-lg:w-full;
   }
 
   .profile_title {
