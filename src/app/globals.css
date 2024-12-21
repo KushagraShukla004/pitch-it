@@ -30,26 +30,6 @@
   }
   /* main section end */
 
-  /* ideacard */
-  /* .idea-card {
-    @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-sky-500 transition-all duration-500 hover:shadow-300 hover:bg-neutral-200;
-  }
-
-  .idea-card_desc {
-    @apply font-normal text-sm line-clamp-2 my-3 text-zinc-800 break-all;
-  }
-
-  .idea-card_img {
-    @apply w-full h-[164px] rounded-[10px] object-cover;
-  }
-
-  .idea-card_btn {
-    @apply rounded-full bg-zinc-900 text-sm text-white px-4 py-2 md:px-3 md:py-1.5 md:text-xs lg:text-sm lg:px-4 lg:py-2 !important;
-  }
-
-  .idea-card_skeleton {
-    @apply w-full h-96 rounded-[22px] bg-zinc-400;
-  } */
   .idea-card {
     @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-sky-500 transition-all duration-500 hover:shadow-300 hover:bg-neutral-200;
     @apply sm:py-4 sm:px-4 lg:py-6 lg:px-5; /* Adjust padding for smaller screens */
@@ -88,36 +68,6 @@
   .search-btn {
     @apply size-[20px] rounded-full bg-zinc-800 flex justify-center items-center !important;
   }
-
-  /* ideaform */
-  /* .idea-form {
-    @apply max-w-2xl mx-auto my-10 space-y-8 px-6;
-  }
-
-  .idea-form_label {
-    @apply font-bold text-[18px] text-black uppercase;
-  }
-
-  .idea-form_input {
-    @apply border-[3px] border-black p-5 text-[18px] text-black font-semibold rounded-full mt-3 placeholder:text-slate-500 !important;
-  }
-
-  .idea-form_textarea {
-    @apply border-[3px] border-black p-5 text-[18px] text-black font-semibold rounded-[20px] mt-3 placeholder:text-slate-500 !important;
-  }
-
-  .idea-form_error {
-    @apply text-red-500 mt-2 ml-5;
-  }
-
-  .idea-form_editor {
-    @apply mt-3 border-[3px] border-black text-[18px] text-black font-semibold placeholder:text-slate-500 !important;
-  }
-
-  .idea-form_btn {
-    @apply bg-cyan-500 border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] !important;
-  } */
-  /* idea form end */
 
   /* ideaform */
   .idea-form {
@@ -173,14 +123,6 @@
     @apply bg-secondary px-6 py-3 font-sans font-bold rounded-sm uppercase relative tag-tri;
   }
 
-  .heading {
-    @apply uppercase bg-black px-6 py-3 font-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
-  }
-
-  .sub-heading {
-    @apply font-medium text-[20px] text-white max-w-2xl text-center break-words;
-  }
-
   .no-result {
     @apply text-[#333333] text-sm font-normal;
   }
@@ -204,7 +146,7 @@
 
   /* idea details */
   .divider {
-    @apply border-dotted bg-zinc-400 max-w-4xl my-10 mx-auto;
+    @apply border-dotted bg-zinc-400  my-10 mx-auto;
   }
 
   .view_skeleton {
@@ -220,10 +162,6 @@
     @apply w-56 border-[5px] border-black bg-white p-5 rounded-2xl !important;
   }
 
-  .login {
-    @apply border-[5px] py-4 border-black bg-white text-black relative shadow-100 font-sans font-medium hover:shadow-none transition-all duration-500 !important;
-  }
-
   /* view */
   .view-container {
     @apply flex justify-end items-center mt-5 fixed bottom-3 right-3;
@@ -235,19 +173,6 @@
 
   .category-tag {
     @apply font-medium text-[16px] bg-cyan-600 px-4 py-2 rounded-full;
-  }
-
-  .pattern {
-    background-image: linear-gradient(
-      to right,
-      transparent 49.5%,
-      rgba(251, 232, 67, 0.2) 49.5%,
-      rgba(251, 232, 67, 0.6) 50.5%,
-      transparent 50.5%
-    );
-    background-size: 5% 100%;
-    background-position: center;
-    background-repeat: repeat-x;
   }
 
   .tag-tri {

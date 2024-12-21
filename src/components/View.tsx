@@ -6,18 +6,21 @@ import { writeClient } from "@/sanity/lib/write-client";
 import { unstable_after as after } from "next/server";
 
 const View = async ({ id }: { id: string }) => {
-  const { views: totalViews } = await client
+  // Fetch views safely
+  const result = await client
     .withConfig({ useCdn: false })
     .fetch(IDEA_VIEWS_QUERY, { id });
 
+  const totalViews = result?.views ?? 0; // Default to 0 if undefined
+
+  // Increment views
   //read next.js docs for "after" use also set unstable_after:true in next.config.js
-  after(
-    async () =>
-      await writeClient
-        .patch(id)
-        .set({ views: totalViews + 1 })
-        .commit()
-  );
+  after(async () => {
+    await writeClient
+      .patch(id)
+      .set({ views: totalViews + 1 })
+      .commit();
+  });
 
   return (
     <div className="view-container">
