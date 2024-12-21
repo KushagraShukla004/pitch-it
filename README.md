@@ -114,7 +114,7 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## 👥 Authors
 
-Kushagra Shukla - ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) - ![Link](https://github.com/KushagraShukla004) ![Avatar](https://avatars.githubusercontent.com/u/73269482?s=48&v=4)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) : [Kushagra Shukla](https://github.com/KushagraShukla004) ![Avatar](https://avatars.githubusercontent.com/u/73269482?s=48&v=4)
 
 ## 🙏 Acknowledgments
 
