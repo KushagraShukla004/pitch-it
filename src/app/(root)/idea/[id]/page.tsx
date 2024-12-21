@@ -50,8 +50,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
               priority
             />
           </section>
-          <div className="space-y-5 mt-10 mx-12">
-            <div className="flex-between gap-5">
+          <div className="space-y-5 mt-10 sm:mx-12">
+            <div className="flex-between flex-wrap gap-5">
               <Link href={`/user/${post.author?._id}`} className="flex gap-5">
                 <Image
                   src={post.author?.image || "https://placehold.co/48x48"}
@@ -71,7 +71,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="idea-card">
               {parsedContent ? (
                 <article
-                  className="prose max-w-5xl font-sans break-all"
+                  className="prose max-w-full font-sans break-all"
                   dangerouslySetInnerHTML={{ __html: parsedContent }}
                 />
               ) : (
@@ -83,7 +83,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
           {/* Editor Selected Recommendation */}
           {editorPicks?.length > 0 && (
-            <div className="mt-4 mx-12">
+            <div className="mt-4">
               <p className="font-semibold text-2xl text-white">Editor Picks</p>
               <ul className="mt-7 card_grid-sm">
                 {editorPicks.map((post: IdeaCardType, index: number) => (

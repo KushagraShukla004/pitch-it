@@ -86,7 +86,7 @@ const IdeaForm = () => {
   });
 
   return (
-    <form action={formAction} className="idea-card w-[65%] space-y-8">
+    <form action={formAction} className="idea-card space-y-8">
       <div>
         <label htmlFor="title" className="idea-form_label">
           Title

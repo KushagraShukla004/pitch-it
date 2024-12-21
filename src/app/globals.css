@@ -19,8 +19,7 @@
     @apply px-5 pt-20 w-full flex flex-col items-center min-h-screen;
   }
   .section_container {
-    @apply bg-gray-500 bg-opacity-50 w-[85%] min-h-[45rem] mt-5 border-slate-700 rounded-2xl p-5 overflow-y-auto 
-    shadow-2xl shadow-black;
+    @apply bg-gray-500 bg-opacity-50 w-full sm:w-[85%] min-h-[45rem] mt-5 border-slate-700 rounded-2xl p-5 overflow-y-auto shadow-2xl shadow-black;
   }
   .card_grid {
     @apply grid 2xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5;
